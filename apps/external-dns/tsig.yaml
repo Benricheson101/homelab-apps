@@ -1,0 +1,30 @@
+# https://kubernetes.io/docs/concepts/configuration/secret/
+apiVersion: v1
+kind: Secret
+metadata:
+    name: tsig-creds
+    namespace: external-dns
+stringData:
+    EXTERNAL_DNS_RFC2136_TSIG_KEYNAME: ENC[AES256_GCM,data:V0fbD/s=,iv:ByJs3didQMeGV3lzO/a3K2GRTKglq60HVYvYuFkI4wQ=,tag:Kk0IvkiMtfOJQgbW2JLo+A==,type:str]
+    EXTERNAL_DNS_RFC2136_TSIG_SECRET: ENC[AES256_GCM,data:Szg/pbapuJVldmveEsJoUGDVQJsdows91HzfounZWDW0qphNnxvfDUX4Qt8=,iv:2OrO8F9iTkk9/Wr+bq5sUveXX9voplVhigpjkRYQRfI=,tag:ppz4CzY8U0rMatI3GoCyIA==,type:str]
+    EXTERNAL_DNS_RFC2136_TSIG_SECRET_ALG: ENC[AES256_GCM,data:gn/gC4rSBc54TnI=,iv:xm4MdrAJfQNiVYryYi5+IW1UtEn/Vgq6thoI/NgwWYQ=,tag:vaOH+eViQvNtIOvGWF99sw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1yaeq49xp06dguajrxg582knly6ewkarszs6mmq22tq8c0de339aqc6rqzd
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBGRjJRUGRxQmxTWGdJdXZP
+            SXgyR2E0d1ZvSHQySkMyWnBuTGN3ZEVVejJJCnRmZXRhTHRuT1Vnc3JsNC9hTW5X
+            WlpwNEkvL2g0UnNEQkVWYUZuaEczdk0KLS0tIEkyYnRIK3ExWS9BUTBxNGw5MDRo
+            WHY0OGRWS3JmdTNNMFJJUHFEczJrQWsKIP9sqvVGN7CyGiC72Tue5WBmlsIO1EPF
+            lsy3z9xl0hHoSfvqP92IUqlZvW1BAOQVhHxNGM9Q4w7DhA3sl3iMhw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-06-21T17:50:32Z"
+    mac: ENC[AES256_GCM,data:+JbZ503V8etX25SnC3IGZa4msX50HPh5Uhps5vNQvySMR18BkHqYjqm4Vvb6pnhO8OxDowOoOvBGYgVj8BIMysa8K7uienr3YhZHGyC9R96SLlQy/43Thl+K/LVnJPLi6YpWrRUaxEBmasm1Rfic+q+gkUxLllKoCnhdqfu7ICA=,iv:zT6PPHgd5lpJlvFdAURMSFTThzzLSYZ+DLmGXXrU8Ow=,tag:p5iUy0zozms6yh3mgzPuTw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1

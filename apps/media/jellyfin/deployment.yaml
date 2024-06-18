@@ -1,0 +1,94 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyfin
+  namespace: media
+  labels:
+    app: jellyfin
+spec:
+  selector:
+    matchLabels:
+      app: jellyfin
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  jellyfin
+      labels:
+        app: jellyfin
+    spec:
+      runtimeClassName: nvidia
+      containers:
+        - name: jellyfin
+          image: lscr.io/linuxserver/jellyfin
+          # imagePullPolicy: IfNotPresent
+          # resources:
+          #   requests:
+          #     cpu: 100m
+          #     memory: 100Mi
+          #   limits:
+          #     cpu: 100m
+          #     memory: 100Mi
+          # livenessProbe:
+          #   tcpSocket:
+          #     port: 80
+          #   initialDelaySeconds: 5
+          #   timeoutSeconds: 5
+          #   successThreshold: 1
+          #   failureThreshold: 3
+          #   periodSeconds: 10
+          # readinessProbe:
+          #   httpGet:
+          #     path: /_status/healthz
+          #     port: 80
+          #   initialDelaySeconds: 5
+          #   timeoutSeconds: 2
+          #   successThreshold: 1
+          #   failureThreshold: 3
+          #   periodSeconds: 10
+
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: America/New_York
+            - name: JELLYFIN_PublishedServerUrl
+              value: 192.168.8.208
+            - name: NVIDIA_VISIBLE_DEVICES
+              value: all
+
+          ports:
+            - containerPort: 8096
+              name: jellyfin-webui
+
+          volumeMounts:
+            - name: media-nfs
+              mountPath: /mnt/media
+
+            - name: config
+              mountPath: /config
+
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+      tolerations:
+      - key: nvidia.com/gpu
+        operator: Exists
+        effect: NoSchedule
+
+      volumes:
+        - name: media-nfs
+          nfs:
+            server: 192.168.8.177
+            path: /mnt/swim/k8s-media
+
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyfin-config
+
+      restartPolicy: Always

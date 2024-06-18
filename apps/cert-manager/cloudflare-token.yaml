@@ -1,0 +1,30 @@
+# https://kubernetes.io/docs/concepts/configuration/secret/
+apiVersion: v1
+kind: Secret
+metadata:
+    name: cloudflare-api-token
+    namespace: cert-manager
+type: Opaque
+stringData:
+    api-token: ENC[AES256_GCM,data:FEf8I1e93Ct4VjRZqQTXE86QfPkRIeYMHEjHfhp5PGo6LGahbN9EPA==,iv:e/LSwuGWYRHJl66dEwDyrx3U2fVKWvFebE6uQkko5YA=,tag:K/7ElI/SL7awTBCMp7B1LA==,type:str]
+    thing: ENC[AES256_GCM,data:QLzjTuIq5nCLDpo=,iv:6em0ShMfjlzGKc6V3AIdme67dSXx57nYWgi8bJx5Z4Y=,tag:moB75tUEPSA44mFGcKN4Pg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1yaeq49xp06dguajrxg582knly6ewkarszs6mmq22tq8c0de339aqc6rqzd
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOMVlVMnlveUp6QXRFU2tD
+            bi82WTdnbkw4RjcrZzNpV2V2dWFla2llL0dzClBrTHdOOFQ0dG9BVFFSUDMyUGhO
+            WlhOQjVPdm1XM292cnIzNGE5TlpPVHcKLS0tIFBIbFNqbkI3U0QvOUtiWnY3OXl4
+            MENEMWVLcDB4eUY3MlkvNlZEVC9nMzAK2AtOIWAtfUne2Zjbz0Qkd+e7GSjX6CzC
+            zB2zFXjbdFRlZJkYm++/lIsTMj30D9PZ8cpY8IrrTs3/mdtDtC1HRw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-06-21T20:00:44Z"
+    mac: ENC[AES256_GCM,data:jIVWgyRuftkfH0TEJUKNcAMCQFQ6JlVgc8Hdvy6tkUVmHSd51BpOtNneeKXVqJTh5K+TFGZ1vQ3iNc/4h14VXqMTD2PFiGKFOD5DDcr77JU+bUZ5zUme8tVs5TNpgsjBE2DGFhM8oC9MdVrlXviX59yzcZXTD8PvIjenRgLCHYk=,iv:7wcS/1+Xct5FMh1ntFg8FiTceErE+Nerca3rBkvR5nc=,tag:/woKnjzbayzZ7exSt5PtkQ==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1

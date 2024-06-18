@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: unpackerr-cm
+  namespace: media
+data:
+  UN_SONARR_0_URL: http://sonarr-svc
+  UN_SONARR_0_PATHS_0: /mnt/media/downloads
+  UN_SONARR_0_PROTOCOLS: torrent
+  UN_SONARR_0_TIMEOUT: 10s
+  UN_SONARR_0_DELETE_ORIG: 'false'
+  UN_SONARR_0_DELETE_DELAY: 5m
+
+  UN_RADARR_0_URL: http://radarr-svc
+  UN_RADARR_0_PATHS_0: /mnt/media/downloads
+  UN_RADARR_0_PROTOCOLS: torrent
+  UN_RADARR_0_TIMEOUT: 10s
+  UN_RADARR_0_DELETE_ORIG: 'false'
+  UN_RADARR_0_DELETE_DELAY: 5m

@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: le-wildcard-pupy-cloud
+  namespace: traefik
+spec:
+  secretName: le-wildcard-pupy-cloud-tls
+  dnsNames:
+    - pupy.cloud
+    - '*.pupy.cloud'
+    - '*.internal.pupy.cloud'
+    - '*.k8s.pupy.cloud'
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer

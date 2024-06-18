@@ -1,0 +1,22 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jellyseerr-ingress
+  namespace: media
+spec:
+  rules:
+  - host: jellyseerr-kube.pupy.cloud
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: jellyseerr-svc
+            port:
+              name: jseerr-webui
+  tls:
+    - hosts:
+        - '*.pupy.cloud'
+      secretName: le-wildcard-pupy-cloud-tls

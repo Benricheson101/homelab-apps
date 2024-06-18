@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+  - host: app-kube.pupy.cloud
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svc
+            port:
+              name: webui
+  tls:
+    - hosts:
+        - '*.pupy.cloud'
+      secretName: le-wildcard-pupy-cloud-tls

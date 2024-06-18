@@ -1,0 +1,13 @@
+namespace: media
+
+resources:
+  - ./namespace.yaml
+  - ./qbittorrent
+  - ./radarr
+  - ./sonarr
+  - ./prowlarr
+  - ./jellyfin
+  - ./jellyseerr
+  - ./filebrowser
+  - ./lidarr
+  - ./unpackerr

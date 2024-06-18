@@ -1,0 +1,9 @@
+namespace: external-dns
+
+resources:
+  - ./namespace.yaml
+  - ./tsig.yaml
+  - ./deployment.yaml
+  - ./clusterrole.yaml
+  - ./clusterrolebinding.yaml
+  - ./serviceaccount.yaml

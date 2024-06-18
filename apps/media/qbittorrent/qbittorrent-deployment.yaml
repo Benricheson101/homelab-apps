@@ -1,0 +1,102 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qbittorrent
+  namespace: media
+  labels:
+    app: qbittorrent
+spec:
+  selector:
+    matchLabels:
+      app: qbittorrent
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/default-container:  qbittorrent
+      labels:
+        app: qbittorrent
+    spec:
+      # for NFS because idk how k8s users work so just run as root :nod:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+
+      initContainers:
+        - name: gluetun
+          image: qmcgaw/gluetun
+          restartPolicy: Always
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+
+          envFrom:
+            - configMapRef:
+                name: gluetun-cm
+
+          env:
+            - name: OPENVPN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: gluetun-ovpn
+                  key: OPENVPN_USER
+            - name: OPENVPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: gluetun-ovpn
+                  key: OPENVPN_PASSWORD
+
+      containers:
+        - name: qbittorrent
+          image: lscr.io/linuxserver/qbittorrent:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 200m
+              memory: 2Gi
+            limits:
+              cpu: 1
+              memory: 4Gi
+
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: America/New_York
+            - name: WEBUI_PORT
+              value: '8080'
+
+          ports:
+            - containerPort: 8080
+              name: qbt-webui
+
+          volumeMounts:
+            - name: media-nfs
+              mountPath: /mnt/media
+
+            - name: qbittorrent-config
+              mountPath: /config
+
+        - name: qbt-port-updater
+          image: benricheson101/qbt-gluetun-port-updater:alpine
+          command: ['/bin/bash', '/update_port.sh', '-i', '30']
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: qbittrrent-login
+
+      volumes:
+        - name: media-nfs
+          nfs:
+            server: 192.168.8.177
+            path: /mnt/swim/k8s-media
+
+        - name: qbittorrent-config
+          persistentVolumeClaim:
+            claimName: qbittorrent-config
+
+      restartPolicy: Always

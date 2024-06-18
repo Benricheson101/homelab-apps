@@ -1,0 +1,29 @@
+resources:
+  - ../arr-base
+
+labels:
+  - pairs:
+      app: lidarr
+    includeSelectors: true
+    includeTemplates: true
+
+namePrefix: lidarr-
+
+patches:
+  - target:
+      kind: Ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: lidarr-kube.pupy.cloud
+
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/ports/0/containerPort
+        value: 8686
+
+images:
+  - name: scratch
+    newName: lscr.io/linuxserver/lidarr

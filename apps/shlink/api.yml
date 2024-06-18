@@ -1,0 +1,119 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shlink-api
+  namespace: shlink
+  labels:
+    app: shlink-api
+spec:
+  selector:
+    matchLabels:
+      app: shlink-api
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: shlink-api
+    spec:
+      # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+      containers:
+      - name: shlink-api
+        image: shlinkio/shlink:stable
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /rest/health
+            port: 8080
+
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        ports:
+        - containerPort: 8080
+          name: shlink-api
+        volumeMounts:
+        - name: shlink-api-data
+          mountPath: /etc/shlink/data
+      volumes:
+        - name: shlink-api-data
+          persistentVolumeClaim:
+            claimName: shlink-api-storage
+      restartPolicy: Always
+---
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: shlink-api-svc
+  namespace: shlink
+spec:
+  selector:
+    app: shlink-api
+  type: ClusterIP
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+---
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shlink-api-ingress
+  namespace: shlink
+spec:
+  rules:
+  - host: shlink-kube.pupy.cloud
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: shlink-api-svc
+            port:
+              number: 80
+  tls:
+    - hosts:
+        - '*.pupy.cloud'
+      secretName: le-wildcard-pupy-cloud-tls
+---
+# https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shlink-api-storage
+  namespace: shlink
+spec:
+  storageClassName: longhorn
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Mi
+---
+

@@ -1,0 +1,29 @@
+resources:
+  - ../arr-base
+
+labels:
+  - pairs:
+      app: prowlarr
+    includeSelectors: true
+    includeTemplates: true
+
+namePrefix: prowlarr-
+
+patches:
+  - target:
+      kind: Ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: prowlarr-kube.pupy.cloud
+
+  - target:
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/ports/0/containerPort
+        value: 9696
+
+images:
+  - name: scratch
+    newName: lscr.io/linuxserver/prowlarr

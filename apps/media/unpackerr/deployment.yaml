@@ -1,0 +1,52 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unpackerr
+  labels:
+    app: unpackerr
+spec:
+  selector:
+    matchLabels:
+      app: unpackerr
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: unpackerr
+    spec:
+      # for NFS because idk how k8s users work so just run as root :nod:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+
+      containers:
+        - name: unpackerr
+          image: golift/unpackerr
+          env:
+            - name: PUID
+              value: '0'
+            - name: PGID
+              value: '0'
+            - name: TZ
+              value: America/New_York
+
+          envFrom:
+            - configMapRef:
+                name: unpackerr-cm
+            - secretRef:
+                name: unpackerr-credentials
+
+          volumeMounts:
+            - name: media-nfs
+              mountPath: /mnt/media
+
+      volumes:
+        - name: media-nfs
+          nfs:
+            server: 192.168.8.177
+            path: /mnt/swim/k8s-media
+
+      restartPolicy: Always

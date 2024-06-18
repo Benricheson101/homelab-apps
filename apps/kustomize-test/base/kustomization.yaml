@@ -1,0 +1,5 @@
+namespace: my-nginx
+
+resources:
+  - deployment.yaml
+  - service.yaml

@@ -1,0 +1,22 @@
+resources:
+  - ../arr-base
+
+labels:
+  - pairs:
+      app: sonarr
+    includeSelectors: true
+    includeTemplates: true
+
+namePrefix: sonarr-
+
+patches:
+  - target:
+      kind: Ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: sonarr-kube.pupy.cloud
+
+images:
+  - name: scratch
+    newName: lscr.io/linuxserver/sonarr

@@ -1,0 +1,22 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: qbittorrent-ingress
+  namespace: media
+spec:
+  rules:
+  - host: qbittorrent-kube.pupy.cloud
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: qbittorrent-svc
+            port:
+              number: 8080
+  tls:
+    - hosts:
+        - '*.pupy.cloud'
+      secretName: le-wildcard-pupy-cloud-tls

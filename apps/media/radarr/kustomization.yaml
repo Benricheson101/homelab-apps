@@ -1,0 +1,22 @@
+resources:
+  - ../arr-base
+
+labels:
+  - pairs:
+      app: radarr
+    includeSelectors: true
+    includeTemplates: true
+
+namePrefix: radarr-
+
+patches:
+  - target:
+      kind: Ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: radarr-kube.pupy.cloud
+
+images:
+  - name: scratch
+    newName: lscr.io/linuxserver/radarr

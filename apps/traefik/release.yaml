@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  chart:
+    spec:
+      chart: traefik
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+  install:
+    createNamespace: true
+  interval: 1m0s
+  values:
+    tlsStore:
+      default:
+        defaultCertificate:
+          secretName: le-wildcard-pupy-cloud-tls

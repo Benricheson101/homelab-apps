@@ -1,0 +1,14 @@
+creation_rules:
+  - path_regex: '.*?-issuer.ya?ml'
+    encrypted_regex: ^(email)$
+    age: age1yaeq49xp06dguajrxg582knly6ewkarszs6mmq22tq8c0de339aqc6rqzd
+
+  - path_regex: .*.yaml
+    encrypted_regex: ^(data|stringData)$
+    age: age1yaeq49xp06dguajrxg582knly6ewkarszs6mmq22tq8c0de339aqc6rqzd
+
+stores:
+  yaml:
+    indent: 2
+  json:
+    indent: 2

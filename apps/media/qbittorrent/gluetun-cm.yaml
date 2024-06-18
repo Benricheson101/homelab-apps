@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gluetun-cm
+  namespace: media
+data:
+  VPN_SERVICE_PROVIDER: protonvpn
+  VPN_PORT_FORWARDING: on
+  SERVER_COUNTRIES: Netherlands

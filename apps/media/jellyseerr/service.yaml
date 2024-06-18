@@ -1,0 +1,15 @@
+# https://kubernetes.io/docs/concepts/services-networking/service/
+apiVersion: v1
+kind: Service
+metadata:
+  name: jellyseerr-svc
+  namespace: media
+spec:
+  selector:
+    app: jellyseerr
+  type: ClusterIP
+  ports:
+    - name: jseerr-webui
+      protocol: TCP
+      port: 80
+      targetPort: jseerr-webui

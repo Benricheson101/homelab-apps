@@ -1,0 +1,8 @@
+resources:
+  - ./qbittorrent-deployment.yaml
+  - ./qbittorrent-svc.yaml
+  - ./qbittorrent-ingress.yaml
+  - ./qbittorrent-pvc.yaml
+  - ./qbittorrent-credentials.yaml
+  - ./gluetun-credentials.yaml
+  - ./gluetun-cm.yaml
