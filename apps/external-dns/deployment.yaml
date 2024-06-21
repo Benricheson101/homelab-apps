@@ -29,6 +29,7 @@ spec:
             - --source=ingress
             - --domain-filter=k8s.pupy.cloud
             - --domain-filter=pupy.cloud
+            - --ignore-ingress-tls-spec
           envFrom:
             - secretRef:
                 name: tsig-creds
