@@ -16,6 +16,7 @@ spec:
     - kind: Secret
       name: gitlab-runner-registration-token
       valuesKey: runnerRegistrationToken
+      targetPath: runnerRegistrationToken
   values:
     gitlabUrl: https://gitlab.pupy.cloud
     unregisterRunners: true
