@@ -1,10 +1,19 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: discord-private
+  namespace: flux-system
+spec:
+  secretRef:
+    name: discord-webhook-private
+  type: discord
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Provider
 metadata:
-  name: discord
+  name: discord-public
   namespace: flux-system
 spec:
   secretRef:
-    name: discord-webhook
+    name: discord-webhook-public
   type: discord
