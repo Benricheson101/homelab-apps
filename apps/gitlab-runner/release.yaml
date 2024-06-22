@@ -1,0 +1,33 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gitlab-runner
+  namespace: gitlab-runner
+spec:
+  chart:
+    spec:
+      chart: gitlab-runner
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab
+  interval: 1m0s
+  valuesFrom:
+    - kind: Secret
+      name: gitlab-runner-registration-token
+  values:
+    gitlabUrl: https://gitlab.pupy.cloud
+    unregisterRunners: true
+    rbac:
+      create: true
+      clusterWideAccess: false
+    metrics:
+      enabled: false
+    runners:
+      tags: "k8s-runner"
+      privileged: true
+      locked: false
+      config: |
+        [[runners]]
+        [runners.kubernetes]
+        image = "ubuntu:20.04"

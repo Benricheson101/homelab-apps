@@ -1,0 +1,29 @@
+# https://kubernetes.io/docs/concepts/configuration/secret/
+apiVersion: v1
+kind: Secret
+metadata:
+    name: gitlab-runner-registration-token
+    namespace: gitlab-runner
+type: Opaque
+stringData:
+    runnerRegistrationToken: ENC[AES256_GCM,data:5vMXI53OikOrJu+dRTKyAnQ6FACN1q43eQ==,iv:7hHDxQww+1oMSF/tfcouurTngX98bYcluf0FAH7hyKo=,tag:b8QIEZODQxaDd8le3gPJvw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1yaeq49xp06dguajrxg582knly6ewkarszs6mmq22tq8c0de339aqc6rqzd
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBpRWw4SWhDbmpKbFp5U0dV
+            akFkL2tFSEFEWE0xTEFBSS9mcUVESnF2MmhnCnE3cGxEL3FDUVFxWTExMGpXenFh
+            SGhnQ1JjcnA5RVFBdUpEK2ttVkp6T2MKLS0tIExpci9RUGJCYUJSMUFDY1J2cWta
+            TElRNUpESEZhemtZdnZBdWcwa3laMVEKICv/3aBQ7RHn1Blv6tu/6HYPJlBeeCL/
+            lWeCij5VoO7VKqjxTkzCIOFpIEzoGYYeXBUVdACuqHxvR89vjslt2w==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-06-22T00:36:38Z"
+    mac: ENC[AES256_GCM,data:2gARYiujaDSvh0/4zTvuqvfvCzcT3pkS62kC0OizV7VrNeyEoQuCsjcak32uZIAsmaIbgpJSJxlqygAaV766lUu5QizrIfgdUYIsX4qUS9LCdxAsVCHurBFU/DLZt2x7Gps3jL7dPAHUjEmlc00FQy7uhzYaOJZPVMAC6kCkjYg=,iv:veWzXfFnSDN0twtRem8Dow/c1N8vuOptl7n5LPjNRMc=,tag:8/nXQuKoWXjcXgdexXCFkA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1
