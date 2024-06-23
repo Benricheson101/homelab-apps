@@ -7,3 +7,4 @@ resources:
 - discord-provider.yaml
 - discord-alerts.yaml
 - gitlab-provider.yaml
+- gitlab-token.yaml
