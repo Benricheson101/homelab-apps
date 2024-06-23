@@ -5,6 +5,7 @@ metadata:
     name: gitlab-token
     namespace: flux-system
 type: Opaque
+# note to self: this PAT needs "Developer" role or higher
 stringData:
     token: ENC[AES256_GCM,data:qwDvlmuqJLI/0ggFGNjSxlti6EDCdIO0qUs=,iv:NV5k9MubjS4B9iyspXBkgfnE/Csz4oOhH9w8U3VQEJ0=,tag:2QLoReR1O1bF9GQEqUSIzg==,type:str]
 sops:
@@ -22,8 +23,8 @@ sops:
             clptUUJCVUVzVUFXZDFHcElnVXdUM1UKeWsWjhOrJZVPgHv4bRtSlFO60OI2sJqM
             v1L7fKzKYsNxDBPplGCar35TFzETlQvud21aKNN7DBPuRGAL0Tc86A==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-06-23T00:57:18Z"
-    mac: ENC[AES256_GCM,data:g+DAkGsqdx7b+Y1Vd4HywOvkCn6ihAxNqdceZl+Njk25zm7+XflNQeIT9mAW8mWIUx65gvJRl72SYxSlPuDuPnE4XSWPrnyBPAZytcba856f9RHeQRJ3XMjADlfEcVLjTLu+NkFk+hJXYf27lLRUE00ky+J+Wv/oHcrlC9UAnKM=,iv:iNdcgd5p1KASL7sXlrBASvrnpDsPtOW5LykBHuoq7Cs=,tag:hF02PcsFrZhTN9REk9yPhg==,type:str]
+    lastmodified: "2024-06-23T00:59:31Z"
+    mac: ENC[AES256_GCM,data:SdTXLN8b7s7TI2x1Ky5m7LsZDTfOAlUlqT6Zq3FbtwDpAmP8UHVtUpMlDwYehCkCUwswOvNxmV76TMCiVbpqiYHBaBSsfvESziFnDAv4VGFI+/TmAirxcJVnzfOfY3cV6ytVnJxdvsdOGnGSbhYEI40fMG0z0mcWvAcfP7iYUPM=,iv:Vqd1ibqdB+tXG4lAroGJ6eu36wjXZThLeQ7KMQRPAEU=,tag:yDhEWRX+B15JrT/nf9Vwsw==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.8.1
