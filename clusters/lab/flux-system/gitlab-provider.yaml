@@ -1,0 +1,24 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: gitlab-provider
+  namespace: flux-system
+spec:
+  address: https://gitlab.pupy.cloud/ben/gitops-flux
+  secretRef:
+    name: gitlab-token
+  type: gitlab
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: gitlab-status
+  namespace: flux-system
+spec:
+  providerRef:
+    name: gitlab-provider
+  eventSources:
+    - kind: Kustomization
+      name: flux-system
+    - kind: Kustomization
+      name: apps

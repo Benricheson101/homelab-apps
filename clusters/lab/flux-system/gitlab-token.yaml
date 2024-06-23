@@ -1,0 +1,29 @@
+# https://kubernetes.io/docs/concepts/configuration/secret/
+apiVersion: v1
+kind: Secret
+metadata:
+    name: gitlab-token
+    namespace: flux-system
+type: Opaque
+stringData:
+    token: ENC[AES256_GCM,data:EzDoOaHFNiLobmGLqGo/B16olwSdQ2wczjY=,iv:0S9XMQsyu9/ISJy3/AFhVgUx2KbeupCW3HfmamrKi50=,tag:R3Lnq/QdCxJ7PBWIC3a1Eg==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1yaeq49xp06dguajrxg582knly6ewkarszs6mmq22tq8c0de339aqc6rqzd
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBoQnNIMXc3Ym9LR1JBaWxn
+            eDlRazhVNFJJb2hTK3V2V2hFblM3OFFQcDBBCnUzMms4SXNTU0h4Sk50WnIrMEdi
+            LzcyUmMzYXFwUHpNM2I4bGJlT3M1SUEKLS0tIHpYMlhCRkU1bTd0S1NGVWQ4RWIy
+            clptUUJCVUVzVUFXZDFHcElnVXdUM1UKeWsWjhOrJZVPgHv4bRtSlFO60OI2sJqM
+            v1L7fKzKYsNxDBPplGCar35TFzETlQvud21aKNN7DBPuRGAL0Tc86A==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-06-23T00:41:10Z"
+    mac: ENC[AES256_GCM,data:J2cIBmvGL24Yt90sxruIdpQCUzxh6VatPOasRRPyl1+7RMQNsIZPz9HAngWjO4T6Z/vNbX5aKdT8SNPVjUWVdQmXofQtgIKneukJ4uiAp5a2wYPwjSflctDVxGznXz+ZLdhh/U4kvZk0DMTqVxk+Ck3nFXaUqhaGb59uPzrejao=,iv:xV70eDoW6pHWgKU4nuOdSlhgdp8E/RWqjyxzyrEqg+I=,tag:jPdOnX6sbJB6Ww2FYgggQA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1
