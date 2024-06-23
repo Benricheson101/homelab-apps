@@ -6,3 +6,4 @@ resources:
 - discord-webhook.yaml
 - discord-provider.yaml
 - discord-alerts.yaml
+- gitlab-provider.yaml
