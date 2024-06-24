@@ -9,4 +9,4 @@ spec:
   resources:
     requests:
       # these apps suck and store logs here for some reason
-      storage: 20Mi
+      storage: 200Mi
