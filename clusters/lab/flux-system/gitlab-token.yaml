@@ -7,7 +7,8 @@ metadata:
 type: Opaque
 # note to self: this PAT needs "Developer" role or higher
 stringData:
-    token: ENC[AES256_GCM,data:qwDvlmuqJLI/0ggFGNjSxlti6EDCdIO0qUs=,iv:NV5k9MubjS4B9iyspXBkgfnE/Csz4oOhH9w8U3VQEJ0=,tag:2QLoReR1O1bF9GQEqUSIzg==,type:str]
+    #ENC[AES256_GCM,data:+9A88bT7GvzHnBGfLHZOhv9jd6T6E3gfA9WVEXGOi/+Glg==,iv:F3w+i8LP8PgF9BuNGxnddVefkLS4sckM5MiA5Hy4FNc=,tag:YGh6iOBjsomoI24BTcCe4g==,type:comment]
+    token: ENC[AES256_GCM,data:Jw7UxIzaVlzsLsRvXYeUZZ21u1YJbZB6KrY=,iv:JfIETgor9PDagfFxvsXIS37b8Sc/TwbKAsHF6jdZ0f8=,tag:Uvkm5Glfn94qpWcM5noGrQ==,type:str]
 sops:
     kms: []
     gcp_kms: []
@@ -23,8 +24,8 @@ sops:
             clptUUJCVUVzVUFXZDFHcElnVXdUM1UKeWsWjhOrJZVPgHv4bRtSlFO60OI2sJqM
             v1L7fKzKYsNxDBPplGCar35TFzETlQvud21aKNN7DBPuRGAL0Tc86A==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-06-23T00:59:31Z"
-    mac: ENC[AES256_GCM,data:SdTXLN8b7s7TI2x1Ky5m7LsZDTfOAlUlqT6Zq3FbtwDpAmP8UHVtUpMlDwYehCkCUwswOvNxmV76TMCiVbpqiYHBaBSsfvESziFnDAv4VGFI+/TmAirxcJVnzfOfY3cV6ytVnJxdvsdOGnGSbhYEI40fMG0z0mcWvAcfP7iYUPM=,iv:Vqd1ibqdB+tXG4lAroGJ6eu36wjXZThLeQ7KMQRPAEU=,tag:yDhEWRX+B15JrT/nf9Vwsw==,type:str]
+    lastmodified: "2024-06-28T21:28:23Z"
+    mac: ENC[AES256_GCM,data:kRjsCa0dwwtQCNSB9C+sZrZOJlzfixL5U111UdyM3QROGBG4WvcCHZinTm9yYWAa8qMdTMKD1zYo/+DLpk/5+OhehI8pG0GAUyMClTb9ZM7Qd8zZvqQJRNwqJj57dpemCwKUvPP5fS378SZa1mOCbCdYiGyRfBTdzOElfEzpHdw=,iv:veM9HICN2G+c9tp7ZGEAusc+RJaRNeHgstmQCyxq+B0=,tag:1l1xXoZeyiy6xS3jaU8iTA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData)$
     version: 3.8.1
