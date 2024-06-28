@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shlink-client
-  namespace: shlink
+  namespace: shlinklaksjdfkajsdf
   labels:
     app: shlink-client
 spec:
