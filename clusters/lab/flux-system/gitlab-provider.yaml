@@ -15,6 +15,7 @@ metadata:
   name: gitlab-status
   namespace: flux-system
 spec:
+  eventSeverity: info
   providerRef:
     name: gitlab-provider
   eventSources:
