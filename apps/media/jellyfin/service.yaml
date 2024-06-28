@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: jellyfin-svc
-  namespace: media
+  namespace: mediaaaaaa
 spec:
   selector:
     app: jellyfin
