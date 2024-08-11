@@ -32,5 +32,6 @@ spec:
       config: |
         [[runners]]
         [runners.kubernetes]
-        image = "ubuntu:20.04"
+        # image = "ubuntu:20.04"
+        image = "docker:dind"
         privileged = true
